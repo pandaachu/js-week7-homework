@@ -1,0 +1,37 @@
+//media query 斷點範圍
+
+@mixin l-1280{
+  @media (max-width: 1280px) {
+    @content;
+  }
+}
+@mixin l-1024{
+  @media (max-width: 1024px) {
+    @content;
+  }
+}
+@mixin l-767{
+  @media (max-width: 767px) {
+    @content;
+  }
+}
+@mixin l-414{
+  @media (max-width: 414px) {
+    @content;
+  }
+}
+@mixin l-375{
+  @media (max-width: 375px) {
+    @content;
+  }
+}
+@mixin l-360{
+  @media (max-width: 360px) {
+    @content;
+  }
+}
+@mixin l-320{
+  @media (max-width: 320px) {
+    @content;
+  }
+}

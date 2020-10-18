@@ -1,0 +1,14 @@
+.p- {
+  &relative {
+    position: relative;
+  }
+  &absolute {
+    position: absolute;
+  }
+  &md-absolute-unset {
+    position: absolute;
+    @include media-breakpoint-up(md) {
+        position: unset;
+    }
+  }
+}

@@ -1,0 +1,127 @@
+// HOVER
+.hoverGroup{
+  &__underline {
+    display: inline-block;
+    position: relative;
+  }
+  &__underline::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: $secondary;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+  }
+  &__image{
+    transition: filter 1s ease;
+  }
+  &__showText{
+    transition: opacity 1s ease;
+    opacity: 0;
+  }
+}
+.hoverGroup:hover{
+  transition-duration: 5s;
+  .hoverGroup__underline::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+  .hoverGroup__image{
+    // -webkit-filter:brightness(.5);
+    filter:brightness(.5);
+  }
+  .hoverGroup__showText{
+    opacity: 1;
+  }
+}
+
+
+@keyframes img_shine {
+  0% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes img_in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+
+
+@keyframes colorText {
+  0% {
+    background-position: 0 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
+}
+
+@keyframes spin {
+  100% {
+      transform: rotate(360deg);
+      
+  }
+}
+@keyframes leftToRight {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 95%;
+  }
+}
+
+@keyframes backgroundScale {
+  0% {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(1.2, 1.2);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
+
+// AOS
+[data-aos="custom-fade-up"] {
+  transform: translateY(40px);
+  opacity: 0;
+  transition-property: transform, opacity;
+  &.aos-animate {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+[data-aos="custom-fade-right"] {
+  transform: translateX(-40px);
+  opacity: 0;
+  transition-property: transform, opacity;
+  &.aos-animate {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+[data-aos="custom-fade-left"] {
+  transform: translateX(40px);
+  opacity: 0;
+  transition-property: transform, opacity;
+  &.aos-animate {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}

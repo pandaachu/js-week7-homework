@@ -1,0 +1,111 @@
+.l-loading {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: $primary--t90;
+  z-index: 9000000;
+}
+.l-loading .load-center {
+  position: absolute;
+  top: 40vh;
+  left: 50vw;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  box-sizing: border-box;
+  .line {
+    position: absolute;
+    top: 50%;
+    width: 60px;
+    height: 3px;
+    background: $secondary;
+    animation: spin 1.5s infinite ease;
+
+    &:nth-of-type(2) {
+      animation-delay: -0.1s;
+    }
+    &:nth-of-type(3) {
+      animation-delay: -0.2s;
+    }
+    &:nth-of-type(4) {
+      animation-delay: -0.3s;
+    }
+  }
+}
+.l-loading .load-line {
+  position: absolute;
+  top: 50vh;
+  left: 0;
+  // animation: leftToRight 0.5s ease;
+  margin-top: 20px;
+  height: 1px;
+  background-color: $secondary;
+  transition: all 1s 0.5s ease;
+}
+
+
+
+
+// .l-loading {
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   right: 0;
+//   bottom: 0;
+//   width: 100%;
+//   height: 100%;
+//   background: $primary--t90;
+//   z-index: 9000000;
+// }
+// .l-loading .load-center {
+//   position: absolute;
+//   top: 40.5%;
+//   left: 50%;
+//   margin-left: -56px;
+//   margin-top: -93px;
+//   width: 113px;
+//   height: 186px;
+//   position: relative;
+//   display: inline-block;
+//   box-sizing: border-box;
+//   padding: 30px;
+//   width: 25%;
+//   height: 140px;
+//   .line {
+//     position: absolute;
+//     top: 50%;
+//     margin-left: 10px;
+//     width: 60px;
+//     height: 3px;
+//     background: $secondary;
+//     animation: spin 1.5s infinite ease;
+
+//     &:nth-of-type(2) {
+//       animation-delay: -0.1s;
+//     }
+//     &:nth-of-type(3) {
+//       animation-delay: -0.2s;
+//     }
+//     &:nth-of-type(4) {
+//       animation-delay: -0.3s;
+//     }
+//   }
+// }
+// .l-loading .load-line {
+//   position: absolute;
+//   top: 50%;
+//   left: 0;
+//   // animation: leftToRight 0.5s ease;
+//   margin-top: 20px;
+//   height: 1px;
+//   background-color: $secondary;
+//   transition: all 1s 0.5s ease;
+// }
+
+// // mobile layout
+// @media screen and (max-width: 750px) {
+//   .l-loading .load-center {
+//     left: 48%;
+//   }
+// }

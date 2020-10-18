@@ -1,0 +1,29 @@
+.l-bg-no-repeat-tc {
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: 100%;
+}
+.l-bg-no-repeat-tc--shine {
+    &:before {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: 100%;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    animation: img_shine 1.5s linear infinite alternate;
+  }
+}
+
+.l-content {
+  z-index: 2;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}

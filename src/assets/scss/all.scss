@@ -1,0 +1,29 @@
+// ~ 對應到 node_moudles
+@import '~bootstrap/scss/functions';
+@import './helpers/variables';
+// @import '~bootstrap/scss/bootstrap';
+
+@import '~bootstrap';
+
+// base
+@import 'base/reboot';
+@import 'base/typography';
+
+// utils
+@import 'utils/animation';
+@import 'utils/mediaQuery';
+@import 'utils/background';
+@import 'utils/position';
+@import 'utils/letter-spacing';
+
+// components
+@import 'components/loading';
+@import 'components/navbar';
+@import 'components/textDeco';
+@import 'components/logo';
+@import 'components/toast';
+@import 'components/background';
+@import 'components/titleGroup';
+@import 'components/imageFrameGroup';
+// pages
+@import 'pages/home';

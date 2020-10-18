@@ -1,0 +1,17 @@
+.titleGroup{
+  margin-bottom: 5rem;
+  &__title{
+    margin-bottom: 3.5rem;
+    &::after{
+      display: block;
+      position: absolute;
+      content: '';
+      height: 1px;
+      width: 3rem;
+      margin-top: 1.5rem;
+      background-color: $secondary;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+}

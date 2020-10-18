@@ -1,0 +1,17 @@
+.letter-spacing {
+  &-s {
+    letter-spacing: 1.2px;
+  }
+  &-m {
+    letter-spacing: 1.5px;
+  }
+  &-l {
+    letter-spacing: 1.8px;
+  }
+  &-xl {
+    letter-spacing: 2px;
+  }
+  &-xxl {
+    letter-spacing: 20px;
+  }
+}

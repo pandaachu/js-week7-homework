@@ -1,0 +1,18 @@
+.l-background{
+  background-image: url(../public/images/function_bg.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  @include media-breakpoint-up(md){
+    background-size: contain;
+    background-position: bottom center;
+  }
+}
+.l-background2{
+  background-image: url(../public/images/collection_bg.jpg);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  // background-attachment: fixed;
+}

@@ -1,0 +1,92 @@
+@font-face {
+  font-family: 'Optima nova LT Pro Light';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Optima nova LT Pro Light'), url('assets/font/OptimaNovaLTProLight.woff') format('woff');
+  }
+  .optimaNovaFont{
+    font-family: 'Optima nova LT Pro Light','Noto Sans TC',sans-serif;
+  }
+
+$base-font-size: 1rem;
+$base-line-height: 1.5;
+// $font-xxl: 50px;
+// $font-xl: 44px;
+// $font-l: 30px;
+// $font-m: 25px;
+// $font-ms: 22px;
+// $font-s: 12px;
+// $font-xs: 8px;
+
+.color-text {
+  background: -webkit-linear-gradient(
+    left,
+    #ffffff 0%,
+    #d5b899 24%,
+    #ffffff 36%,
+    #d5b899 46%,
+    #ffffff 52%,
+    #d5b899 58%,
+    #d5b899 67%,
+    #ffffff 100%
+  );
+  background-size: 400% 400%;
+  background-clip: text;
+  -webkit-background-clip: -webkit-text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  // text-fill-color: transparent;
+  animation-name: colorText;
+  animation-duration: 8s;
+  -webkit-animation-timing-function: ease;
+  animation-timing-function: ease;
+  animation-iteration-count: infinite;
+}
+
+body,
+html {
+  // font-size: $base-font-size;
+  line-height: $base-line-height;
+  // font-family: 'Tajawal',"Microsoft JhengHei", "微軟正黑體", sans-serif;
+  font-family: 'YuGothic','Noto Sans TC', sans-serif;
+}
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  font-weight: 400;
+}
+
+.h2 {
+  font-size: $base-font-size * 2;
+}
+.h3 {
+  font-size: $base-font-size * 1.75;
+}
+.h4 {
+  font-size: $base-font-size * 1.5;
+}
+.h5 {
+  font-size: $base-font-size * 1.25;
+}
+.h6 {
+  font-size: $base-font-size;
+}
+.font-s {
+  font-size: $base-font-size * 0.75;
+}
+.font-m {
+  font-size: $base-font-size * 0.875;
+}
+
+// line-height
+
+.line-height-s {
+  line-height: 2;
+}
+.line-height-m {
+  line-height: 2.3;
+}
+.line-height-lg {
+  line-height: 2.5;
+}
+.line-height-xlg {
+  line-height: 3;
+}

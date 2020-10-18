@@ -1,0 +1,81 @@
+.brackets {
+  position: relative;
+  line-height: 1.4;
+  padding:0.25em 1em;
+  display: inline-block;
+  top:0;
+}
+
+.brackets:before, .brackets:after { 
+  position: absolute;
+  top: 0;
+  content:'';
+  width: 8px;
+  height: 100%;
+  display: inline-block;
+}
+.brackets:before {
+  border-left: solid 1px $text-muted;
+  border-top: solid 1px $text-muted;
+  border-bottom: solid 1px $text-muted;
+  left: 0;
+}
+.brackets:after {
+  content: '';
+  border-top: solid 1px $text-muted;
+  border-right: solid 1px $text-muted;
+  border-bottom: solid 1px $text-muted;
+  right: 0;
+}
+
+.quotationMark {
+  position: relative;
+  line-height: 1.4;
+  padding:0.25em 1em;
+  display: inline-block;
+}
+
+.quotationMark:before, .quotationMark:after { 
+  content:'';
+  width: 20px;
+  height: 30px;
+  position: absolute;
+  display: inline-block;
+}
+
+.quotationMark:before {
+  border-left: solid 1px $white;
+  border-top: solid 1px $white;
+  top:0;
+  left: 0;
+}
+
+.quotationMark:after {
+  border-right: solid 1px $white;
+  border-bottom: solid 1px $white;
+  bottom:0;
+  right: 0;
+}
+
+.underline-s {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 1em;
+}
+.underline-s:before {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  display: inline-block;
+  width: 60px;
+  height: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: black;
+  border-radius: 2px;
+}
+
+.custom-border-bottom{
+  border-bottom: 3px $secondary solid;
+  // transform: translateX(-50%);
+}

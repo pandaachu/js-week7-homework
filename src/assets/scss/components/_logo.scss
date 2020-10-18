@@ -1,0 +1,37 @@
+.logo {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  letter-spacing: 2.5px;
+  &__icon {
+    position: relative;
+    width: 2rem;
+    height: 2rem;
+    &__line-wrap {
+      position: absolute;
+      top: 50%;
+      // left: 20%;
+      transform: translate(-50%, -50%);
+    }
+    &__line {
+      position: absolute;
+      // top: 50%;
+      // left: 50%;
+      // margin-left: 10px;
+      width: 2rem;
+      height: 1.5px;
+      background: $secondary;
+      animation: spin 1.5s infinite ease;
+  
+      &:nth-of-type(2) {
+        animation-delay: -0.1s;
+      }
+      &:nth-of-type(3) {
+        animation-delay: -0.2s;
+      }
+      &:nth-of-type(4) {
+        animation-delay: -0.3s;
+      }
+    }
+  }
+}

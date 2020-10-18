@@ -1,0 +1,68 @@
+.l-home{
+  &__hero-1{
+    .bg-img {
+      width: 100%;
+      background-image: url(../public/images/heroBanner-1_mb.jpg);
+      &:before {
+        background-image: url(../public/images/heroBanner-2_mb.jpg);
+        background-size: 100%;
+      }
+      @include media-breakpoint-up(md) {
+        background-image: url(../public/images/heroBanner-1.jpg);
+        &:before {
+          background-image: url(../public/images/heroBanner-2.jpg);
+        }
+      }
+    }
+  }
+  &__content{
+    top: 3rem;
+    left: 5%;
+    letter-spacing: 1.5px;
+    visibility: hidden;
+    @include media-breakpoint-up(md){
+      top: 13rem;
+      left: 10%;
+    }
+  }
+  &__content.on{
+    visibility: visible;
+    animation: img_in 1.5s ease;
+    // transition: .5s ease-in;
+  }
+  &__title{
+    font-size: 4rem;
+    line-height: 1.1;
+    @include media-breakpoint-up(md){
+      font-size: 5rem;
+    }
+  }
+  &__subtitle{
+    font-size: 1.5rem;
+    @include media-breakpoint-up(md){
+      font-size: 2.55rem;
+    }
+  }
+  &__collection{
+    background-image: url(../public/images/collection_bg_mb.jpg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: top center; 
+    @include media-breakpoint-up(md){
+      background-image: url(../public/images/collection_bg.jpg);
+      background-size: contain;
+    }
+  }
+  &__function{
+    background-image: url(../public/images/function_bg.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-attachment: fixed;
+  }
+  // &__sectionbg{
+  //   background-image: url(../public/images/bg-2-3.jpg);
+  //   background-size: 100%;
+  //   background-repeat: no-repeat;
+  // }
+}

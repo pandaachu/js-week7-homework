@@ -3,7 +3,10 @@
     <div class="bg-white sticky-top">
       <div class="container">
         <nav class="navbar px-0 navbar-expand-lg navbar-light bg-white d-flex justify-content-between">
-          <router-link to="/admin/" class="logo navbar-brand position-absolute text-secondary d-flex m-0" href="#" ><Logo class="mr-3"></Logo>FOREST</router-link>
+          <router-link to="/admin/" class="logo navbar-brand position-absolute text-secondary d-flex m-0" href="#" >
+            <Logo class="mr-3"></Logo>
+            FOREST
+          </router-link>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -40,16 +43,24 @@
 </template>
 
 <script>
+/* global $ */
 // 這裡是後台入口，驗證要做在這
 import Logo from '@/components/Logo.vue'
 export default {
+  name: 'Dashboard',
   components: {
     Logo
   },
   data () {
     return {
       token: '',
-      checkSuccess: false
+      checkSuccess: false,
+      messages: [
+        {
+          name: '失敗',
+          content: '回到登入畫面'
+        }
+      ]
     }
   },
   methods: {
@@ -74,6 +85,8 @@ export default {
         })
         .catch(error => {
           console.log(error.response)
+          this.$bus.$emit('push-messages', this.messages[0])
+          $('.l-toast').toast('show')
           // 如果驗證失敗畫面回到 login
           this.$router.push('/admin/login')
         })

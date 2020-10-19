@@ -240,6 +240,7 @@
 /* global $ */
 import Pagination from '@/components/Pagination.vue'
 export default {
+  name: 'Coupons',
   components: {
     Pagination
   },
@@ -260,6 +261,10 @@ export default {
       pagination: {},
       messages: [
         {
+          name: '失敗',
+          content: '出現錯誤'
+        },
+        {
           name: '刪除成功',
           content: '已刪除優惠券'
         }
@@ -272,11 +277,9 @@ export default {
       const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/admin/ec/coupons?page=${num}`
       this.$http.get(url)
         .then(res => {
-          // console.log(res)
           this.coupons = res.data.data
           this.pagination = res.data.meta.pagination
           this.isLoading = false
-          // console.log(this.coupons)
         })
     },
     openCouponModal (status, coupon) {
@@ -320,12 +323,16 @@ export default {
       // 建立 coupon
       this.tempCoupon.deadline_at = `${this.deadline_date} ${this.deadline_time}`
 
-      this.$http[httpMethod](url, this.tempCoupon).then(() => {
-        $('#couponModal').modal('hide')
-        this.getCoupons() // 重新取得 coupons
-      }).catch(() => {
-        this.isLoading = false
-      })
+      this.$http[httpMethod](url, this.tempCoupon)
+        .then(() => {
+          $('#couponModal').modal('hide')
+          this.getCoupons() // 重新取得 coupons
+        })
+        .catch(() => {
+          this.$bus.$emit('push-messages', this.messages[0])
+          $('.l-toast').toast('show')
+          this.isLoading = false
+        })
     },
     delCoupon (id) {
       this.isLoading = true
@@ -333,10 +340,16 @@ export default {
       const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/admin/ec/coupon/${id}`
       this.$http.delete(url)
         .then(() => {
-          this.isLoading = false
           $('#delCouponModal').modal('hide')
+          this.$bus.$emit('push-messages', this.messages[1])
+          $('.l-toast').toast('show')
+          this.getCoupons()
+          this.isLoading = false
+        })
+        .catch(() => {
           this.$bus.$emit('push-messages', this.messages[0])
           $('.l-toast').toast('show')
+          this.isLoading = false
         })
     }
   },

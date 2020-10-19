@@ -77,18 +77,18 @@
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
-        <product-modal
+        <ProductModal
           :tem-product="temProduct" :is-new="isNew" :status="status"
           @update="getProducts"
         >
-        </product-modal>
+        </ProductModal>
         <!-- <upload-image
           :tem-product="temProduct" :is-new="isNew" :status="status"
           @update="getProducts"
         >
         </upload-image> -->
       </div>
-      <del-product-modal :tem-product="temProduct" @update="getProducts"></del-product-modal>
+      <DelProductModal :tem-product="temProduct" @update="getProducts"></DelProductModal>
   </div>
 </template>
 
@@ -99,6 +99,7 @@ import ProductModal from '@/components/admin/ProductModal.vue'
 // import UploadImage from '../../components/UploadImage.vue'
 import Pagination from '@/components/Pagination.vue'
 export default {
+  name: 'Products',
   components: {
     DelProductModal,
     ProductModal,
@@ -118,7 +119,13 @@ export default {
       products: [],
       // openModal 的變數
       isNew: false,
-      loadingBtn: ''
+      loadingBtn: '',
+      messages: [
+        {
+          name: '失敗',
+          content: '出現錯誤'
+        }
+      ]
     }
   },
   props: ['token'],
@@ -167,9 +174,9 @@ export default {
       this.$http
         .get(url)
         .then(res => {
-          this.isLoading = false
           this.products = res.data.data
           this.pagination = res.data.meta.pagination
+          this.isLoading = false
           // 如果 id 存在
           if (this.temProduct.id) {
             this.temProduct = {
@@ -177,6 +184,11 @@ export default {
             } // 把 temProduct 清除，避免重覆觸發
             $('#productModal').modal('hide')
           }
+        })
+        .catch(() => {
+          this.$bus.$emit('push-messages', this.messages[0])
+          $('.l-toast').toast('show')
+          this.isLoading = false
         })
     }
   },

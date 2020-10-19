@@ -47,8 +47,10 @@
 </template>
 
 <script>
+/* global $ */
 import Pagination from '@/components/Pagination.vue'
 export default {
+  name: 'Orders',
   components: {
     Pagination
   },
@@ -57,31 +59,48 @@ export default {
       orders: [],
       tempOrder: {},
       pagination: {},
-      isLoading: false
+      isLoading: false,
+      messages: [
+        {
+          name: '失敗',
+          content: '出現錯誤'
+        }
+      ]
     }
   },
   methods: {
     getOrders (num = 1) {
       this.isLoading = true
       const api = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/admin/ec/orders?page=${num}`
-      this.$http.get(api).then((res) => {
-        this.isLoading = false
-        // console.log('orders', res)
-        this.orders = res.data.data
-        this.pagination = res.data.meta.pagination
-      }).catch(() => {
-        this.isLoading = false
-      })
+      this.$http
+        .get(api)
+        .then((res) => {
+          // console.log('orders', res)
+          this.orders = res.data.data
+          this.pagination = res.data.meta.pagination
+          this.isLoading = false
+        })
+        .catch(() => {
+          this.$bus.$emit('push-messages', this.messages[0])
+          $('.l-toast').toast('show')
+          this.isLoading = false
+        })
     },
     changePaidStatus (paid, id) {
       let api = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/admin/ec/orders/${id}`
       api += `/${paid ? 'paid' : 'unpaid'}`
       this.isLoading = true
-      this.$http.patch(api).then(() => {
-        this.getOrders(this.pagination.paged)
-      }).catch(() => {
-        this.isLoading = false
-      })
+      this.$http
+        .patch(api)
+        .then(() => {
+          this.getOrders(this.pagination.paged)
+          this.isLoading = false
+        })
+        .catch(() => {
+          this.$bus.$emit('push-messages', this.messages[0])
+          $('.l-toast').toast('show')
+          this.isLoading = false
+        })
     }
   },
   created () {

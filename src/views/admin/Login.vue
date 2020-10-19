@@ -40,7 +40,9 @@
 </template>
 
 <script>
+/* global $ */
 export default {
+  name: 'Login',
   data () {
     return {
       user: {
@@ -48,7 +50,13 @@ export default {
         password: ''
       },
       token: '',
-      isLoading: false
+      isLoading: false,
+      messages: [
+        {
+          name: '失敗',
+          content: '登入失敗'
+        }
+      ]
     }
   },
   methods: {
@@ -58,7 +66,6 @@ export default {
       this.$http
         .post(api, this.user)
         .then(response => {
-          this.isLoading = false
           // console.log(response); // 取得遠端傳回來的 response
           const token = response.data.token // 把 token 存起來
           const expired = response.data.expired // 把 到期日 存起來
@@ -70,36 +77,14 @@ export default {
           // 登入成功後使用 $router 方法轉址
           this.$router.push('/admin/products')
           // axios 是非同步行為，因此如果要正確儲存 token，轉址的步驟要放在 axios 裡，否則轉址會比 axios 先進行，結果不會進行 axios 的步驟
+          this.isLoading = false
         })
         .catch(error => {
           console.log(error)
+          this.$bus.$emit('push-messages', this.messages[0])
+          $('.l-toast').toast('show')
           this.isLoading = false
         })
-    },
-    // signout () {
-    //   // 清除 cookie
-    //   document.cookie = 'hexToken=; expires=; path=/'
-    // },
-    getData () {
-      this.isLoading = true
-      // 取得 token 的 cookies（注意取得的時間點）
-      // hexToken -> 剛剛儲存的 token
-      // this.token -> 把 token 存在 Vue 裡面
-      // this.token = document.cookie.replace(/(?:(?:^|.*;\s*)hexToken\s*\=\s*([^;]*).*$)|^.*$/, '$1')
-      this.token = document.cookie.replace(/(?:(?:^|.*;\s*)hexToken\s*=\s*([^;]*).*$)|^.*$/, '$1')
-      // console.log('token', this.token)
-      // API
-      const api = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/admin/ec/products`
-      // 將 Token 加入到 Headers 內
-      // 要加上 Bearer
-      this.$http.defaults.headers.common.Authorization = `Bearer ${this.token}`
-
-      // 取得遠端資料
-      this.$http.get(api).then(response => {
-        this.isLoading = false
-        this.products = response.data.data
-        this.pagination = response.data.data.meta.pagination
-      })
     }
   }
 }

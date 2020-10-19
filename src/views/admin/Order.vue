@@ -55,6 +55,7 @@
 
 <script>
 export default {
+  name: 'Order',
   data () {
     return {
       order: { // 定義資料
@@ -72,9 +73,8 @@ export default {
     // this.getOrder()
     this.$http.get(url)
       .then((res) => {
-        // console.log(res)
-        this.isLoading = false
         this.order = res.data.data
+        this.isLoading = false
       })
   }
 }

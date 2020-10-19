@@ -121,6 +121,7 @@
 /* global $ */
 import Pagination from '@/components/Pagination.vue'
 export default {
+  name: 'Storages',
   components: {
     Pagination
   },
@@ -135,6 +136,10 @@ export default {
       checkboxs: [],
       isCheck: false,
       messages: [
+        {
+          name: '失敗',
+          content: '出現錯誤'
+        },
         {
           name: '刪除成功',
           content: '已刪除圖片'
@@ -153,6 +158,11 @@ export default {
           this.pagination = res.data.meta.pagination
           this.isLoading = false
         })
+        .catch(() => {
+          this.$bus.$emit('push-messages', this.messages[0])
+          $('.l-toast').toast('show')
+          this.isLoading = false
+        })
     },
     openModelDel (status, item) {
       this.status = status
@@ -167,10 +177,10 @@ export default {
       this.$http.delete(url)
         .then(() => {
           $('#deleteModal').modal('hide')
-          this.isLoading = false
-          this.$bus.$emit('push-messages', this.messages[0])
+          this.$bus.$emit('push-messages', this.messages[1])
           $('.l-toast').toast('show')
           this.getStorages()
+          this.isLoading = false
         })
     },
     getCheckedValues () { // 抓出已選擇的 checkbox for 的寫法
@@ -205,9 +215,9 @@ export default {
         // console.log(url)
         this.$http.delete(url)
           .then(() => {
-            this.isLoading = false
-            this.$bus.$emit('push-messages', this.messages[0])
+            this.$bus.$emit('push-messages', this.messages[1])
             $('.l-toast').toast('show')
+            this.isLoading = false
           })
       })
       $('#deleteModal').modal('hide')
